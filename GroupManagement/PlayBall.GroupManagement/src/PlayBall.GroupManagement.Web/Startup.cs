@@ -2,6 +2,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Autofac;
+using Autofac.Extensions.DependencyInjection;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -18,7 +20,13 @@ namespace PlayBall.GroupManagement.Web
         {
             services.AddControllersWithViews();
 
-            services.AddSingleton<IGroupsService, InMemoryGroupsService>();
+            services.AddBusiness();
+
+            //var containerBuilder = new ContainerBuilder();
+            //containerBuilder.RegisterModule<AutofacModule>();
+            //containerBuilder.Populate(services);
+            //var container = containerBuilder.Build();
+            //return new AutofacServiceProvider(container);
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
